@@ -82,7 +82,7 @@ export default function Home() {
             {
               nftsList && nftsList.length > 0 &&
               nftsList.map((nft, index) => {
-                return <AllCreateTemplateItem key={index} nft={nft}/>
+                return <CreateTemplateItem key={index} nft={nft}/>
               }).reverse()
             }
           </div>
@@ -91,9 +91,9 @@ export default function Home() {
           <div className="text-zinc-800 text-2xl font-bold">현재 진행중인 캠페인</div>
           <div className="self-stretch justify-start items-start gap-5 inline-flex flex-wrap mb-[20px]">
             {
-              nftsList && nftsList.length > 0 &&
-              nftsList.map((nft, index) => {
-                return <CreateTemplateItem key={index} nft={nft}/>
+              allNFTList && allNFTList.length > 0 &&
+              allNFTList.map((nft, index) => {
+                return <AllCreateTemplateItem key={index} nft={nft}/>
               }).reverse()
             }
           </div>
