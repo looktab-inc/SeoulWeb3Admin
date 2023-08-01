@@ -20,14 +20,14 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           text_prompts: [
             {
-              text: `Please draw an illustration of a plant seed.`
+              text: `Please draw a clean illustration of a native plant seed with one seed inside.`
             },
           ],
           cfg_scale: 7,
           clip_guidance_preset: 'FAST_BLUE',
           height: 512,
           width: 512,
-          samples: 1,
+          samples: 3,
           steps: 30,
           style_preset: 'comic-book',
           init_image: params.referenceURL

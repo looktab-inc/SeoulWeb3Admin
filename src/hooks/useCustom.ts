@@ -85,16 +85,13 @@ const useCustom = () => {
       template: MessageTemplateType.DEFAULT_BY_ADMIN,
       text: 'NFT를 발행 중입니다. \n 시간이 조금 걸립니다. 잠시만 기다려 주세요!'
     })
-
-    const storageByWeb3 = new StorageByWeb3()
-    const imageURL = await storageByWeb3.getImage(createNFT.nftImage)
     const newAttributes = [
       { trait_type: 'store_address', value: account?.address },
       { trait_type: 'seed', value: createNFT.seed },
       { trait_type: 'seed_type', value: createNFT.seedType },
       { trait_type: 'level', value: -1 },
       { trait_type: 'certification', value: 'all' },
-      { trait_type: 'cover_image', value: imageURL},
+      { trait_type: 'cover_image', value: createNFT.nftImage},
       { trait_type: 'created_time', value: dayjs() },
     ]
     fetch('/api/collection', {
@@ -105,7 +102,7 @@ const useCustom = () => {
       body: JSON.stringify({
         title: createNFT.nftTitle,
         description: createNFT.nftDescription,
-        imageUri: imageURL as string,
+        imageUri: createNFT.nftImage as string,
         attributes: newAttributes
       }),
     }).then(response => response.json())

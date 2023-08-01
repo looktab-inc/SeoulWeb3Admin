@@ -47,13 +47,17 @@ class StorageByWeb3 {
       const files = [
         new File([u8arr], fileName, { type: mime })
       ]
-      this.uploadFile(files,fileName)
-        .then(result => {
-          console.log(`https://${result}.ipfs.w3s.link/${encodeURIComponent(fileName)}`)
-          return `https://${result}.ipfs.w3s.link/${encodeURIComponent(fileName)}`
-        }).catch(e => {
+      return new Promise((resolve, reject) => {
+        this.uploadFile(files,fileName)
+          .then(result => {
+            console.log(result)
+            console.log(`https://${result}.ipfs.w3s.link/${encodeURIComponent(fileName)}`)
+            return resolve(`https://${result}.ipfs.w3s.link/${encodeURIComponent(fileName)}`)
+          }).catch(e => {
           console.log(e)
           throw e
+          return reject(e)
+        })
       })
     }
   }

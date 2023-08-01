@@ -34,6 +34,7 @@ const NFTImage = () => {
     if (custom.getCrateInfo('nftImage')) {
       return
     }
+    // ai 이미지 생성한 경우
     custom.addChat({
       template: MessageTemplateType.DEFAULT_BY_ADMIN,
       text: '시간이 조금 걸립니다. 잠시만 기다려 주세요!'
@@ -41,6 +42,7 @@ const NFTImage = () => {
     const storageByWeb3 = new StorageByWeb3()
     storageByWeb3.uploadByBase64(imageURL, custom.getAccount() as string)
       .then(result => {
+        console.log(result)
         custom.setNFTImageByURL(result as string)
       }).catch(e => {
         console.log(e)
