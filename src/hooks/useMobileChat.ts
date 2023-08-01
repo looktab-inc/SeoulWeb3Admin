@@ -27,9 +27,14 @@ const useMoblieChat = () => {
     }
   }
 
+  const resetChatList = () => {
+    setChatList(null)
+  }
+
   return {
     getChatList,
-    addChat
+    addChat,
+    resetChatList
   }
 }
 

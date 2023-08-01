@@ -236,6 +236,10 @@ const useCustom = () => {
     return createNFT
   }
 
+  const resetChatList = () => {
+    setChatList(null)
+  }
+
   return {
     getChatList,
     addChat,
@@ -253,7 +257,8 @@ const useCustom = () => {
     connectWallet,
     disconnectWallet,
     createNFTCollection,
-    getAddress
+    getAddress,
+    resetChatList
   }
 }
 

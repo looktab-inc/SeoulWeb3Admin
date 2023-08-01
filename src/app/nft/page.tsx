@@ -4,8 +4,18 @@ import InputMessage from "@/components/InputMessage";
 import LNB from "@/components/lnb/LNB";
 import ChatList from "@/components/ChatList";
 import Header from "@/components/Header";
+import useCustom from "@/hooks/useCustom";
+import {useEffect} from "react";
 
 export default function Home() {
+  const custom = useCustom()
+
+  useEffect(() => {
+    return () => {
+      custom.resetChatList()
+    }
+  })
+
   return (
     <>
       <Header/>
