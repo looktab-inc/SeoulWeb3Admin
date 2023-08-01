@@ -6,6 +6,7 @@ import Image from "next/image";
 import useCustom from "@/hooks/useCustom";
 import {useEffect, useState} from "react";
 import CreateTemplateItem from "@/components/CreateTemplateItem";
+import AllCreateTemplateItem from "@/components/AllCreateTemplateItem";
 
 export default function Home() {
   const custom = useCustom()
@@ -81,7 +82,7 @@ export default function Home() {
             {
               nftsList && nftsList.length > 0 &&
               nftsList.map((nft, index) => {
-                return <CreateTemplateItem key={index} nft={nft}/>
+                return <AllCreateTemplateItem key={index} nft={nft}/>
               }).reverse()
             }
           </div>
