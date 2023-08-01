@@ -21,9 +21,9 @@ const NFTDescription = () => {
           </li>
         </ul>
         <div className={"w-full text-zinc-500 text-sm font-medium mt-[4px] bg-[#D4D4D8] p-2 rounded-md"}>
-          예시) 유저가 포인트를 획득하는 방법 <br/>
-          모바일 영수증 캡쳐 사진 인증 시 10포인트 <br/>
-          다회용기 사용 사진 인증 시 100포인트 <br/>
+          예시) 유저가 리워드를 획득하는 방법 <br/>
+          모바일 영수증 캡쳐 사진 인증 시 10리워드 <br/>
+          다회용기 사용 사진 인증 시 100리워드 <br/>
           100 걸음 당 1co2 탄소배출권 적립 <br/>
         </div>
       </div>
