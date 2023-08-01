@@ -7,7 +7,7 @@ const CreateTemplateItem = ({nft}: {nft: NFTType}) => {
   const createTime = nft.attributes.find(attribute => attribute.trait_type === 'created_time')
   const image = nft.attributes.find(attribute => attribute.trait_type === 'cover_image')
   return (
-    <Link href={`/detail/`}>
+    <>
       <div className="w-[200px] h-[200px] px-4 pt-7 pb-5 bg-zinc-100 rounded-2xl relative text-center">
         <div className="absolute right-[12px] top-[12px]">
           <Image src={"/images/icons/icon-more.webp"} alt={'show more'} width={16} height={16}/>
@@ -23,11 +23,11 @@ const CreateTemplateItem = ({nft}: {nft: NFTType}) => {
         {
           createTime  &&
           <div className="text-zinc-500 text-xs font-normal">
-            생성일 {(createTime && dayjs(createTime.value).format("YYYY. MM. DD")) || ""}
+            생성일시 {(createTime && dayjs(createTime.value).format("YYYY. MM. DD")) || ""}
           </div>
         }
       </div>
-    </Link>
+    </>
   )
 }
 
