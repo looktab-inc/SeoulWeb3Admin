@@ -17,7 +17,7 @@ const Header = () => {
   }, [])
 
   const getDisplayAddress = () => {
-    const address = wallet.getAccount()?.address
+    const address = wallet.getAddress()
     return `${address?.slice(0, 6)}...${address?.slice(address?.length - 4)}`
   }
 

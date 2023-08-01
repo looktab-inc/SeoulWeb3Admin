@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {NextRequest, NextResponse} from 'next/server';
 import SolanaHelper from "@/util/externals/blockchain/solanaHelper";
 
@@ -8,6 +9,7 @@ export async function POST (req: NextRequest) {
     const solanaHelper = new SolanaHelper()
     const result = await solanaHelper.getCollections()
     console.log(result)
+    // @ts-ignore
     const functionArray = []
     result.forEach(item => {
       functionArray.push(getMeatData(item.uri))

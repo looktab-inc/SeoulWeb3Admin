@@ -13,16 +13,17 @@ export default function Home() {
 
   useEffect(() => {
     getCollections()
-  }, [custom.getAccount()?.address])
+  }, [custom.getAccount()])
 
   const getCollections = async () => {
-    fetch(`/api/collection/${custom.getAccount()?.address}`, {
+    const address = custom.getAddress()
+    fetch(`/api/collection/${address}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        address: custom.getAccount()?.address
+        address: address
       }),
     })
       .then(response => response.json())

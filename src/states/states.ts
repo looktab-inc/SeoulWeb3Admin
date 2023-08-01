@@ -1,8 +1,10 @@
+// @ts-nocheck
 import {atom, selector} from "recoil";
 import {AccountType, ChatType, CreateNFTType, NFTType, SetCreateNFTType} from "@/util/types/types";
 import {CreateNFTStep, MessageTemplateType} from "@/util/enums/enum";
 
 // setSelf 함수 초기화값 지정, onSet 함수는 값이 변경될 때마다 값을 동기화
+// @ts-ignore
 const localStorageEffect = (key) => ({setSelf, onSet}) => {
   const customLocalStorage = typeof window !== 'undefined' ? window.localStorage : null
   const savedValue = customLocalStorage?.getItem(key)

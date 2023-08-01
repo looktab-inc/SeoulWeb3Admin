@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {useRecoilState} from "recoil";
 import {accountSelector, chatListSelector, createNTFSelector, currentTemplateSelector} from "@/states/states";
 import {ChatType, SelectedType} from "@/util/types/types";
@@ -26,10 +27,13 @@ const useCustom = () => {
   }
 
   const getCrateInfo = (key: string) => {
+    // @ts-ignore
     return createNFT[key]
   }
 
+  // @ts-ignore
   const setCreateInfo = (key, value) => {
+    // @ts-ignore
     setCreateNFT({
       key : key,
       value: value
@@ -202,6 +206,11 @@ const useCustom = () => {
     return account
   }
 
+  const getAddress = () => {
+    return account?.address
+  }
+
+
   const isLoggedIn = () => {
     return account?.loggedIn
   }
@@ -226,7 +235,8 @@ const useCustom = () => {
     getCreateNFTInfo,
     connectWallet,
     disconnectWallet,
-    createNFTCollection
+    createNFTCollection,
+    getAddress
   }
 }
 
