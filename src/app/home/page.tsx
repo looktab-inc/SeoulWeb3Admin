@@ -62,7 +62,7 @@ export default function Home() {
     });
   }
   return (
-    <main className="w-full py-[67px] lg:py-[106px] bg-zinc-100">
+    <main className="w-full py-[67px] lg:py-[106px] bg-zinc-100 h-[100vh]">
       <Header/>
       <div className="w-full p-[40px] bg-zinc-100 flex flex-col justify-center">
         <div className="w-full w-full lg:w-[1000px] p-10 bg-white rounded-[20px] flex-col justify-start items-start mx-auto my-0 gap-5 inline-flex">
