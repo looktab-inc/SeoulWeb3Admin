@@ -11,7 +11,7 @@ const AllCreateTemplateItem = ({nft}: {nft: NFTType}) => {
       <div className="w-[203px] h-[203px] relative">
         {
           image &&
-          <Image className="w-[203px] h-[203px] left-0 top-0 absolute opacity-50 rounded-lg"
+          <Image className="w-[203px] h-[203px] rounded-lg"
                  src={image.value} fill alt={'nft image'}
           />
         }
