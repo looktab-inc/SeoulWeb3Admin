@@ -108,7 +108,8 @@ class SolanaHelper{
         toOwner: new PublicKey(transferAddress),
       }).then(_ => {
         return resolve(true)
-      }).catch(_ => {
+      }).catch(e => {
+        console.log(e)
         return reject(false)
       })
     })
