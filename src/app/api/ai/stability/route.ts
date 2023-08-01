@@ -1,7 +1,7 @@
 import {NextResponse} from 'next/server';
 
 export async function POST(request: Request) {
-  const engineId = 'stable-diffusion-512-v2-1'
+  const engineId = 'stable-diffusion-xl-beta-v2-2-2'
   const apiHost = process.env.API_HOST ?? 'https://api.stability.ai'
   const apiKey = process.env.STABILITY_API_KEY
   const params = await request.json()
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           text_prompts: [
             {
-              text: `Please draw an image with a single brown seed sitting in the center on a completely black background.`
+              text: `Please draw an illustration of a plant seed.`
             },
           ],
           cfg_scale: 7,
