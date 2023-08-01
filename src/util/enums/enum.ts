@@ -9,6 +9,7 @@ export const MessageTemplateType = {
   SEED: 'seed',
   GENERATE_NFT: 'generate_nft',
   END: 'end',
+  NFT_INFO: 'nft_info'
 }
 
 export const CreateNFTStep = {

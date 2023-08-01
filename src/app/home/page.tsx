@@ -65,7 +65,16 @@ export default function Home() {
         <div className="w-full lg:w-[1000px] p-10 my-[40px] bg-white rounded-[20px] flex-col justify-start items-start  mx-auto my-0 gap-5 inline-flex overflow-x-auto">
           <div className="text-zinc-800 text-2xl font-bold">현재 진행중인 캠페인</div>
           <div className="self-stretch justify-start items-start gap-5 inline-flex flex-wrap mb-[20px]">
+            <div className="w-[200px] h-[310px] px-4 pb-5 bg-zinc-100 rounded-2xl flex-col justify-start items-center gap-3 inline-flex">
+              <div className="w-[203px] h-[203px] relative">
 
+              </div>
+              <div className="w-[174px] flex-col justify-start items-center gap-0.5 flex">
+                <div className="text-black text-base font-bold">Nuffy Hackathon Event</div>
+                <div className="text-zinc-500 text-xs font-normal">생성일시 2023.04.08</div>
+              </div>
+              <div className="w-[177px] text-right text-zinc-600 text-xs font-normal">100개 발급</div>
+            </div>
           </div>
           <div className="w-full text-center">
             <button className="px-[20px] py-[10px] bg-zinc-100 rounded-lg mx-auto my-0">

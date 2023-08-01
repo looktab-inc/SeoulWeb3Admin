@@ -13,10 +13,11 @@ import END from "@/components/create_nft_process/END";
 import useCustom from "@/hooks/useCustom";
 import Create from "@/components/create_nft_process/Create";
 import NFTInfo from "@/components/create_nft_process/NFTInfo";
+import useMobileChat from "@/hooks/useMobileChat";
 
-const ChatList = () => {
+const MobileChatList = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const chat = useCustom()
+  const chat = useMobileChat()
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -27,29 +28,15 @@ const ChatList = () => {
 
   return (
     <div className={'overflow-y-auto w-full'}>
-      <div className={'w-[600px] mt-0 mx-auto pt-[48px]'} id="chatList" >
+      <div className={'w-[86%] lg:w-[600px] mt-0 mx-auto pt-[48px]'} id="chatList" >
         {
           chat.getChatList().map((item, index) => {
-            if (item.template === MessageTemplateType.DEFAULT) {
+            if (item.template === MessageTemplateType.NFT_INFO) {
+              return <NFTInfo key={index}/>
+            } else if (item.template === MessageTemplateType.DEFAULT) {
               return <ChatMessage key={index} text={item.text || ""} imageURL={item.imageURL || ""}/>
             } else if (item.template === MessageTemplateType.DEFAULT_BY_ADMIN) {
               return <ChatMessageByAdmin key={index} text={item.text as string}/>
-            } else if (item.template === MessageTemplateType.NFT_TITLE) {
-              return <NFTTitle key={index}/>
-            } else if (item.template === MessageTemplateType.NFT_DESCRIPTION) {
-              return <NFTDescription key={index}/>
-            } else if (item.template === MessageTemplateType.NFT_DESCRIPTION_TONE) {
-              return <NFTDescriptionTone key={index}/>
-            } else if (item.template === MessageTemplateType.NFT_IMAGE) {
-              return <NFTImage key={index}/>
-            } else if (item.template === MessageTemplateType.SEED) {
-              return <NFTSeed key={index}/>
-            } else if (item.template === MessageTemplateType.END) {
-              return <END key={index}/>
-            } else if (item.template === MessageTemplateType.GENERATE_NFT) {
-              return <Create key={index}/>
-            } else if (item.template === MessageTemplateType.NFT_INFO) {
-              return <NFTInfo key={index}/>
             }
           })
         }
@@ -59,4 +46,4 @@ const ChatList = () => {
   )
 }
 
-export default ChatList
+export default MobileChatList

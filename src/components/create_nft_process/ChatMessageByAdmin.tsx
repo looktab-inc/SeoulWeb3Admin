@@ -14,8 +14,8 @@ const ChatMessageByAdmin = ({text, children, childrenInBubble, withImage = true}
       <div className="self-stretch justify-start items-start inline-flex">
         {
           withImage &&
-          <div className="w-16 h-[64px] flex-col justify-center items-center inline-flex mr-[16px]">
-            <div className="w-16 h-[64px] flex-col justify-center items-center inline-flex relative">
+          <div className="w-[32px] h-[32px] lg:w-16 lg:h-[64px] flex-col justify-center items-center inline-flex mr-[16px]">
+            <div className="w-[32px] h-[32px] lg:w-16 lg:h-[64px] flex-col justify-center items-center inline-flex relative">
               <Image src={'/images/profiles/admin-profile.webp?q'} alt={'어드민'} fill/>
             </div>
           </div>

@@ -123,6 +123,53 @@ export const chatListSelector = selector<ChatType[], ChatType|null>({
 })
 
 /**
+ * 채팅 리스트
+ */
+export const mobileChatListState = atom<ChatType[]>({
+  key: 'mobileChatListState',
+  default: [
+    {
+      template: MessageTemplateType.NFT_INFO,
+      text: '',
+      imageURL: '',
+    }
+  ]
+})
+
+export const mobileChatListSelector = selector<ChatType[], ChatType|null>({
+  key: 'mobileChatListSelector',
+  get: ({get}) => get(mobileChatListState),
+  set: ({set, reset}, newChatItem: ChatType | null) => {
+    if (newChatItem === null) {
+      reset(mobileChatListState)
+    } else {
+      set(mobileChatListState, (oldChatListState) => [...oldChatListState, newChatItem]);
+    }
+  },
+})
+
+/**
+ * 현재 탬플릿
+ */
+export const mobileCurrentTemplateState = atom<string>({
+  key: 'mobileCurrentTemplateState',
+  default: MessageTemplateType.NFT_INFO
+})
+
+export const mobileCurrentTemplateSelector = selector<string, string|null>({
+  key: 'mobileCurrentTemplateSelector',
+  get: ({get}) => get(mobileCurrentTemplateState),
+  set: ({set, reset}, newTemplate: string | null) => {
+    if (newTemplate === null) {
+      reset(mobileCurrentTemplateState)
+    } else {
+      set(mobileCurrentTemplateState, newTemplate);
+    }
+  },
+})
+
+
+/**
  * nft 리스트
  */
 export const NFTListState = atom<NFTType[]>({

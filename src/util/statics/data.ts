@@ -269,7 +269,7 @@ export const TONES = [
 export const SEEDS = [
   {
     type: SEED.TREE,
-    title: '나무 (10단계)  10kg 이상의 CO2를 저장하는 NFT'
+    title: '나무 (6단계)  10kg 이상의 CO2를 저장하는 NFT'
   },
   {
     type: SEED.FLOWER,
@@ -278,5 +278,14 @@ export const SEEDS = [
   {
     type: SEED.GRAIN,
     title: '작물 (1단계)  100g 의 CO2를 저장하는 NFT',
+  }
+]
+
+export const GROWTH_STAGE = [
+  {
+    type: SEED.TREE,
+    reference_image: [
+
+    ]
   }
 ]
