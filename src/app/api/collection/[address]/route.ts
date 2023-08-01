@@ -7,15 +7,44 @@ export async function POST (req: NextRequest) {
   try {
     const solanaHelper = new SolanaHelper()
     const result = await solanaHelper.getCollections()
-    return NextResponse.json({
-      result
+    console.log(result)
+    const functionArray = []
+    result.forEach(item => {
+      functionArray.push(getMeatData(item.uri))
     })
+
+    return Promise.all(functionArray).then(response => {
+      const myNFTs = response.filter(item => {
+        const myNFT = item.attributes.find(attribute => {
+          return attribute.trait_type === 'store_address' && attribute.value === params.address
+        })
+        return !!myNFT
+      })
+      return NextResponse.json({
+        metadata: myNFTs
+      })
+    }).catch(e => {
+      console.log(e)
+      throw e
+    })
+
+
   } catch(error: any) {
     console.log(error)
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
-      console.error(error.response.status, error.response.data);
+      console.error(error.response.status, error.response.data)
     }
     return NextResponse.json({ error: 'error' , status: 500 })
   }
+}
+
+const getMeatData = async (uri) => {
+  return await fetch(uri, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(response => response.json())
+    .then(response => response)
 }

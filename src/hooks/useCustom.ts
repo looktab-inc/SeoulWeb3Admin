@@ -5,6 +5,7 @@ import {CreateNFTStep, MessageTemplateType} from "@/util/enums/enum";
 import {SEEDS, TONES} from "@/util/statics/data";
 import AIHelper from "@/util/externals/ai/client";
 import StorageByWeb3 from "@/util/externals/storage/web3";
+import dayjs from "dayjs";
 
 const useCustom = () => {
   const [account, setAccountInfo] = useRecoilState(accountSelector)
@@ -65,12 +66,17 @@ const useCustom = () => {
       template: MessageTemplateType.DEFAULT_BY_ADMIN,
       text: 'NFT를 발행 중입니다. \n 시간이 조금 걸립니다. 잠시만 기다려 주세요!'
     })
+
+    const storageByWeb3 = new StorageByWeb3()
+    const imageURL = await storageByWeb3.getImage(createNFT.nftImage)
     const newAttributes = [
       { trait_type: 'store_address', value: account?.address },
       { trait_type: 'seed', value: createNFT.seed },
+      { trait_type: 'level', value: -1 },
+      { trait_type: 'certification', value: 'all' },
+      { trait_type: 'cover_image', value: imageURL},
+      { trait_type: 'created_time', value: dayjs() },
     ]
-    const storageByWeb3 = new StorageByWeb3()
-    const imageURL = await storageByWeb3.getImage(createNFT.nftImage)
     fetch('/api/collection', {
       method: 'POST',
       headers: {

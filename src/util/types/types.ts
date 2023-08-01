@@ -35,27 +35,14 @@ export type SetCreateNFTType = {
 export type NFTType = {
   name: string;
   description: string;
-  uri: string;
-  start_time: number;
-  end_time: number;
-  event_type: string;
-  collect_information_type: string;
-  creator: string;
-  enter_code: string;
-  number_of_issues: string;
-  nft_collection_id: string;
-  created_time: number;
-  collect_information_info: {
-    description: string;
-    location: {
-      longitude: number;
-      latitude: number;
-    },
-    address: string;
-    range: number;
-  }
+  image: string;
+  attributes: NFTAtributes[]
 }
 
+export type NFTAtributes = {
+  trait_type: string;
+  value: string;
+}
 
 export type SelectedType = {
   type: string;

@@ -81,8 +81,8 @@ class SolanaHelper{
   }
 
   async getCollections() {
-    return  await this.metaplex.nfts().findAllByOwner({
-      owner: this.publickKey
+    return  await this.metaplex.nfts().findAllByCreator({
+      creator: this.publickKey
     });
   }
 

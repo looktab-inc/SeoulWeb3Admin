@@ -12,8 +12,8 @@ export default function Home() {
   const [nftsList, setNFTS] = useState([])
 
   useEffect(() => {
-    getCollections().then(response => console.log(response))
-  })
+    getCollections()
+  }, [custom.getAccount()?.address])
 
   const getCollections = async () => {
     fetch(`/api/collection/${custom.getAccount()?.address}`, {
@@ -26,21 +26,22 @@ export default function Home() {
       }),
     })
       .then(response => response.json())
-      .then(response => {
-        const {result} = response.result
-        setNFTS(result)
-      }) .catch(error => {
-      // Handle any errors that occurred during the fetch request or data parsing
-      console.error('Fetch error:', error);
-    });
+    .then(response => {
+      const {metadata} = response
+      console.log(metadata)
+      setNFTS(metadata)
+    }) .catch(error => {
+    // Handle any errors that occurred during the fetch request or data parsing
+    console.error('Fetch error:', error);
+  });
   }
   return (
     <main className="w-full py-[67px] lg:py-[106px] bg-zinc-100">
       <Header/>
       <div className="w-full p-[40px] bg-zinc-100 flex flex-col justify-center">
-        <div className="w-full w-full lg:w-[1000px] p-10 bg-white rounded-[20px] flex-col justify-start items-start mx-auto my-0 gap-5 inline-flex overflow-x-auto">
+        <div className="w-full w-full lg:w-[1000px] p-10 bg-white rounded-[20px] flex-col justify-start items-start mx-auto my-0 gap-5 inline-flex">
           <div className="text-black text-2xl font-bold">만든 템플릿 리스트</div>
-          <div className="justify-start items-start gap-4 inline-flex">
+          <div className="w-full justify-start items-start gap-4 inline-flex overflow-x-auto">
             <Link
               className="w-[200px] h-[200px] bg-green-500 rounded-2xl justify-center items-center gap-2.5 inline-flex flex-none"
               href={'/nft'}
