@@ -1,6 +1,8 @@
 // static data
 
 
+import {SEED, Tone} from "@/util/enums/enum";
+
 export const CountryCodes = [
   ["GH","GHANA"],
   ["GA","GABON"],
@@ -247,4 +249,34 @@ export const CountryCodes = [
   ["HM","HEARD AND MC DONALD ISLANDS"],
   ["HU","HUNGARY"],
   ["HK","HONG KONG"],
+]
+
+export const TONES = [
+  {
+    type: Tone.FRIENDLY,
+    title: '친절한'
+  },
+  {
+    type: Tone.PLEASANT,
+    title: '유쾌한',
+  },
+  {
+    type:Tone.PROFESSIONAL,
+    title: '프로페셔널한',
+  }
+]
+
+export const SEEDS = [
+  {
+    type: SEED.TREE,
+    title: '나무 (10단계)  10kg 이상의 CO2를 저장하는 NFT'
+  },
+  {
+    type: SEED.FLOWER,
+    title: '꽃 (3단계) 1~10kg 의 CO2를 저장하는 NFT',
+  },
+  {
+    type: SEED.GRAIN,
+    title: '작물 (1단계)  100g 의 CO2를 저장하는 NFT',
+  }
 ]

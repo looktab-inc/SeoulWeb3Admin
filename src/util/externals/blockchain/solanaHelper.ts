@@ -21,6 +21,8 @@ class SolanaHelper{
   private metaplex: Metaplex;
 
   constructor() {
+    console.log(process.env.SECRET_KEY)
+    console.log(process.env.PUBLIC_KEY)
     this.user = Keypair.fromSecretKey(
       bs58.decode(`${process.env.SECRET_KEY || process.env.NEXT_PUBLIC_SECRET_KEY}`),
     );
@@ -37,14 +39,13 @@ class SolanaHelper{
       );
   }
 
-  async createNft(tokenName: string, description: string, uri: string) {
+  async createNft(tokenName: string, description: string, uri: any) {
     return await this.metaplex.nfts().create(
       {
-        // @ts-ignore
         uri: uri,
         name: tokenName, //각 토큰 이름은 이걸로 형성됨
         sellerFeeBasisPoints: sellerFeeBasisPoints,
-        symbol: symbol,
+        symbol: symbol
       },
       { commitment: 'finalized' },
     ).then(response => {
@@ -78,9 +79,9 @@ class SolanaHelper{
     return await this.metaplex.nfts().findByMint({mintAddress: mintAddressPublicKey})
   }
 
-  async getOriginalUri(description: string,  imageUri: string, attributes: any) {
+  async getOriginalUri(title: string, description: string,  imageUri: string, attributes: any) {
     const { uri } = await this.metaplex.nfts().uploadMetadata({
-      name: "Tinji coupons", //콜렉션 이름은 이걸로 형성됨
+      name: title, //콜렉션 이름은 이걸로 형성됨
       description: description,
       image: imageUri, //변경가능
       symbol: 'SBL', //변경가능

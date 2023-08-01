@@ -4,12 +4,12 @@ export type AccountType = {
 }
 
 export type CreateNFTType = {
-  currentTemplate: string;
   step: number;
   nftTitle: string;
   nftDescription: string;
   tone: string;
   nftImage: string;
+  seed: string;
 }
 
 export type SearchLocationType = {
@@ -54,4 +54,10 @@ export type NFTType = {
     address: string;
     range: number;
   }
+}
+
+
+export type SelectedType = {
+  type: string;
+  title: string;
 }

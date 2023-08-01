@@ -1,5 +1,5 @@
 import {atom, selector} from "recoil";
-import {AccountType, ChatType, CreateNFTType, NFTType, SearchLocationType, SetCreateNFTType} from "@/util/types/types";
+import {AccountType, ChatType, CreateNFTType, NFTType, SetCreateNFTType} from "@/util/types/types";
 import {CreateNFTStep, MessageTemplateType} from "@/util/enums/enum";
 
 // setSelf 함수 초기화값 지정, onSet 함수는 값이 변경될 때마다 값을 동기화
@@ -49,43 +49,20 @@ export const createNTFState = atom<CreateNFTType>({
   key: 'createNTFState',
   default: {
     step: CreateNFTStep.step1,
-    currentTemplate: MessageTemplateType.SELECTED_EVENT,
-    selectedEventTemplate: '',
-    selectedCollectInformation: '',
     nftTitle: '',
     nftDescription:'',
     tone: '',
     nftImage: '',
-    numberOfIssue: 0,
-    enterCode: '',
-    startDateTime: 0,
-    endDateTime: 0,
-    collectInformationDescription: "",
-    displayAppComment: '',
+    seed: ''
   }
 })
 
 export const createNTFSelector = selector<CreateNFTType, SetCreateNFTType>({
   key: 'createNTFSelector',
   get: ({get}) => get(createNTFState),
-  set: ({get, set}, newValue: SetCreateNFTType | null) => {
+  set: ({get, set, reset}, newValue: SetCreateNFTType | null) => {
     if (newValue === null) {
-      set(createNTFState,  {
-        step: CreateNFTStep.step1,
-        currentTemplate: MessageTemplateType.SELECTED_EVENT,
-        selectedEventTemplate: '',
-        selectedCollectInformation: '',
-        nftTitle: '',
-        nftDescription:'',
-        tone: '',
-        nftImage: '',
-        numberOfIssue: 0,
-        enterCode: '',
-        startDateTime: 0,
-        endDateTime: 0,
-        collectInformationDescription: "",
-        displayAppComment: '',
-      });
+      reset(chatListState)
     } else {
       set(createNTFState,
         (oldChatListState) => ({
@@ -97,18 +74,25 @@ export const createNTFSelector = selector<CreateNFTType, SetCreateNFTType>({
   },
 })
 
-
-export const searchLocation = atom<SearchLocationType>({
-  key: 'searchLocation',
-  default: {
-    country: '',
-    address: '',
-    range: 0,
-    longitude: 0,
-    latitude: 0,
-  }
+/**
+ * 현재 탬플릿
+ */
+export const currentTemplateState = atom<string>({
+  key: 'currentTemplateState',
+  default: MessageTemplateType.NFT_TITLE
 })
 
+export const currentTemplateSelector = selector<string, string|null>({
+  key: 'currentTemplateSelector',
+  get: ({get}) => get(currentTemplateState),
+  set: ({set, reset}, newTemplate: string | null) => {
+    if (newTemplate === null) {
+      reset(currentTemplateState)
+    } else {
+      set(currentTemplateState, newTemplate);
+    }
+  },
+})
 
 /**
  * 채팅 리스트
@@ -117,7 +101,7 @@ export const chatListState = atom<ChatType[]>({
   key: 'chatListState',
   default: [
     {
-      template: MessageTemplateType.SELECTED_EVENT,
+      template: MessageTemplateType.NFT_TITLE,
       text: '',
       imageURL: '',
     }
@@ -127,15 +111,9 @@ export const chatListState = atom<ChatType[]>({
 export const chatListSelector = selector<ChatType[], ChatType|null>({
   key: 'chatListSelector',
   get: ({get}) => get(chatListState),
-  set: ({set}, newChatItem: ChatType | null) => {
+  set: ({set, reset}, newChatItem: ChatType | null) => {
     if (newChatItem === null) {
-      set(chatListState,  [
-        {
-          template: MessageTemplateType.SELECTED_EVENT,
-          text: '',
-          imageURL: '',
-        }
-      ]);
+      reset(chatListState)
     } else {
       set(chatListState, (oldChatListState) => [...oldChatListState, newChatItem]);
     }
@@ -143,7 +121,7 @@ export const chatListSelector = selector<ChatType[], ChatType|null>({
 })
 
 /**
- * 채팅 리스트
+ * nft 리스트
  */
 export const NFTListState = atom<NFTType[]>({
   key: 'NFTListState',
