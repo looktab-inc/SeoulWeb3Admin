@@ -80,6 +80,10 @@ const useCustom = () => {
     })
   }
 
+  function removeNewlines(inputString) {
+    return inputString.replace(/\n/g, '');
+  }
+
   const createNFTCollection  = async () => {
     setChatList({
       template: MessageTemplateType.DEFAULT_BY_ADMIN,
@@ -100,8 +104,8 @@ const useCustom = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        title: createNFT.nftTitle,
-        description: createNFT.nftDescription,
+        title: removeNewlines(createNFT.nftTitle),
+        description: removeNewlines(createNFT.nftDescription),
         imageUri: createNFT.nftImage as string,
         attributes: newAttributes
       }),
