@@ -20,13 +20,7 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           text_prompts: [
             {
-              text: ` I would like to request an image of a pine tree seed. 
-              ${params.description} seeds are known for their small and compact size, 
-              yet they embody the beauty of nature. 
-              Please create a vibrant and delicate image that captures the essence of a pine tree seed. 
-              I envision a seed with intricate details, showcasing the unique characteristics of a pine tree seed.
-              Your attention to the natural elements and the subtle nuances of the seed would be greatly appreciated. .
-              Example: ${params.description}`
+              text: `Please draw an image with a single brown seed sitting in the center on a completely black background.`
             },
           ],
           cfg_scale: 7,

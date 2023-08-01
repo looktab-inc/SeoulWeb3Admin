@@ -10,6 +10,7 @@ export type CreateNFTType = {
   tone: string;
   nftImage: string;
   seed: string;
+  seedType: string;
 }
 
 export type SearchLocationType = {

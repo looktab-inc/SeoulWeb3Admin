@@ -2,8 +2,8 @@
 import {useRecoilState} from "recoil";
 import {accountSelector, chatListSelector, createNTFSelector, currentTemplateSelector} from "@/states/states";
 import {ChatType, SelectedType} from "@/util/types/types";
-import {CreateNFTStep, MessageTemplateType} from "@/util/enums/enum";
-import {SEEDS, TONES} from "@/util/statics/data";
+import {CreateNFTStep, MessageTemplateType, SEED} from "@/util/enums/enum";
+import {FLOWERS, GRAINS, SEEDS, TONES} from "@/util/statics/data";
 import AIHelper from "@/util/externals/ai/client";
 import StorageByWeb3 from "@/util/externals/storage/web3";
 import dayjs from "dayjs";
@@ -53,11 +53,26 @@ const useCustom = () => {
     })
   }
 
+  function getRandomNumber(count) {
+    return Math.floor(Math.random() * count); // 0, 1, 2, 3 중 하나의 값 반환
+  }
+
+
   const setNFTSeed = async (selectedType: SelectedType) => {
     setChatList({
       template: MessageTemplateType.DEFAULT,
       text: SEEDS.filter(item => item.type === selectedType.type)[0].title
     })
+    let seedText = ''
+    if (selectedType.type === SEED.TREE) {
+      seedText = FLOWERS[getRandomNumber(3)]
+    } else if(selectedType.type  === SEED.FLOWER) {
+      seedText = FLOWERS[getRandomNumber(2)]
+    } else {
+      seedText = GRAINS[0]
+    }
+
+    setCreateInfo('seedType', seedText)
     setCreateInfo('seed', selectedType.type)
     setChatList({
       template: MessageTemplateType.NFT_DESCRIPTION_TONE,
@@ -76,6 +91,7 @@ const useCustom = () => {
     const newAttributes = [
       { trait_type: 'store_address', value: account?.address },
       { trait_type: 'seed', value: createNFT.seed },
+      { trait_type: 'seed_type', value: createNFT.seedType },
       { trait_type: 'level', value: -1 },
       { trait_type: 'certification', value: 'all' },
       { trait_type: 'cover_image', value: imageURL},

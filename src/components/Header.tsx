@@ -22,7 +22,7 @@ const Header = () => {
   }
 
   return (
-    <div className="w-full lg:h-[106px] bg-white fixed top-0 left-0 right-0">
+    <div className="w-full lg:h-[106px] bg-white fixed top-0 left-0 right-0 z-30">
       <div className="w-full px-[20px] py-[12px] lg:px-[48px] lg:py-[32px] flex border border-zinc-200 justify-between items-center w-max-[1824px]">
         <Link className="w-[131px] h-[32px] relative" href={"/home"}>
           <Image src={'/images/logos/logo.webp'} alt={'nupy'} fill sizes={'100vw'}/>

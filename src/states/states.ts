@@ -55,7 +55,8 @@ export const createNTFState = atom<CreateNFTType>({
     nftDescription:'',
     tone: '',
     nftImage: '',
-    seed: ''
+    seed: '',
+    seedType: ''
   }
 })
 

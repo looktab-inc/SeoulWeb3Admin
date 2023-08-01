@@ -16,30 +16,10 @@ const NFTImage = () => {
   const [dragging, setDragging] = useState(false);
   const dragRef = useRef<HTMLDivElement>(null);
 
-  function getRandomNumber(count) {
-    return Math.floor(Math.random() * count); // 0, 1, 2, 3 중 하나의 값 반환
-  }
 
   const handleClickMakeImage = async () => {
-    custom.addChat({
-      template: MessageTemplateType.DEFAULT_BY_ADMIN,
-      text: 'AI가 이미지를 생성 중입니다.\n 시간이 조금 걸립니다. 잠시만 기다려 주세요!'
-    })
     const aiHelper = new AIHelper()
-    const seed = custom.getCrateInfo('seed')
-    let seedText = ''
-    let referenceImage = ''
-    if (seed === SEED.TREE) {
-      seedText = FLOWERS[getRandomNumber(3)]
-      referenceImage = TREE_REFERENCES[0]
-    } else if(seed === SEED.FLOWER) {
-      seedText = FLOWERS[getRandomNumber(2)]
-      referenceImage = FLOWER_REFERENCES[0]
-    } else {
-      seedText = GRAINS[0]
-      referenceImage = GRAIN_REFERENCES[0]
-    }
-    aiHelper.makeImage(seedText, referenceImage)
+    aiHelper.makeImage("", "")
       .then(result => {
         // @ts-ignore
         setImages(result)
