@@ -101,7 +101,8 @@ const NFTImage = () => {
       text: '이미지를 최적화 하는 중입니다. \n 시간이 조금 걸립니다. 잠시만 기다려 주세요!'
     })
     const storageByWeb3 = new StorageByWeb3()
-    const fileName = `${custom.getAccount()?.address}-${Date.now()}`
+    const file = files[0]
+    const fileName = file.name
     storageByWeb3.uploadFile(files, fileName)
       .then(result => {
         console.log(result)
