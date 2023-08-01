@@ -2,17 +2,18 @@ import {NextResponse} from 'next/server';
 import SolanaHelper from "@/util/externals/blockchain/solanaHelper";
 
 export async function POST(request: Request) {
-  const {title, description, imageUri, attributes} = await request.json()
+  const params = await request.json()
   try {
     const solanaHelper = new SolanaHelper()
-    const { uri } = await solanaHelper.getOriginalUri(
-      title,
-      description,
-      imageUri,
-      attributes
+    const uri = await solanaHelper.getOriginalUri(
+      params.title,
+      params.description,
+      params.imageUri,
+      params.attributes
     )
+    const result = await solanaHelper.createNft(params.title, params.description, uri)
     return NextResponse.json({
-      uri
+      result
     })
   } catch(error: any) {
     // Consider adjusting the error handling logic for your use case

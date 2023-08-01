@@ -85,6 +85,10 @@ const useCustom = () => {
     }).then(response => response.json())
       .then(response => {
         console.log(response)
+        setChatList({
+          template: MessageTemplateType.END,
+          text: ''
+        })
       })
 
   }

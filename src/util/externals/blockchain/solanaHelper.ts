@@ -38,21 +38,24 @@ class SolanaHelper{
   }
 
   async createNft(tokenName: string, description: string, uri: any) {
-    return await this.metaplex.nfts().create(
-      {
-        uri: uri,
-        name: tokenName, //각 토큰 이름은 이걸로 형성됨
-        sellerFeeBasisPoints: sellerFeeBasisPoints,
-        symbol: symbol
-      },
-      { commitment: 'finalized' },
-    ).then(response => {
-      const {nft} = response
-      console.log(`Token Mint: https://explorer.solana.com/address/${nft.address.toString()}?cluster=devnet`);
-      return nft
-    }).catch(e => {
-      console.log(e)
-      throw e
+    return new Promise((resolve, reject) => {
+      this.metaplex.nfts().create(
+        {
+          uri: uri,
+          name: tokenName, //각 토큰 이름은 이걸로 형성됨
+          sellerFeeBasisPoints: sellerFeeBasisPoints,
+          symbol: symbol
+        },
+        { commitment: 'finalized' },
+      ).then(response => {
+        const {nft} = response
+        console.log(`Token Mint: https://explorer.solana.com/address/${nft.address.toString()}?cluster=devnet`);
+        return resolve(resolve)
+      }).catch(e => {
+        console.log(e)
+        throw e
+        return reject('create error')
+      })
     })
   }
 

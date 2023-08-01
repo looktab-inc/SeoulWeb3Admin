@@ -11,7 +11,7 @@ const NFTDescription = () => {
         </div>
         <ul className="text-[14px] font-medium mt-[4px] list-disc pl-[1em]">
           <li className={"list-disc"}>
-            이미지가 필요한 경우 '이미지','캡쳐' 단어를 포함해주세요.
+            이미지가 필요한 경우 <b>"이미지"</b> , <b>"캡쳐"</b> 또는 <b>"사진"</b>  단어를 포함해주세요.
           </li>
           <li className={"list-disc"}>
             사용자의 걸음 기반 탄소배출권 적립은 '걸음' 단어를 포함해주세요.

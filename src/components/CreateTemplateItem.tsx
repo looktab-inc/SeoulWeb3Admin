@@ -5,19 +5,9 @@ import {useEffect, useState} from "react";
 import dayjs from "dayjs";
 import StorageByWeb3 from "@/util/externals/storage/web3";
 
-const CreateTemplateItem = ({ nft}: {nft: NFTType}) => {
+const CreateTemplateItem = ({nft}: {nft: NFTType}) => {
   const [imageUrl, setImageUrl] = useState('')
   const storageByWeb3 = new StorageByWeb3()
-
-  useEffect(() => {
-    getImageUrl()
-  })
-
-  const getImageUrl = async () => {
-    await storageByWeb3.getImage(nft.uri)
-      .then(result => setImageUrl(result as string))
-      .catch(e => console.log(e))
-  }
 
   return (
     <Link href={`/detail/${nft.nft_collection_id}`}>

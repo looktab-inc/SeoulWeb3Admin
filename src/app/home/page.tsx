@@ -4,24 +4,31 @@ import Header from "@/components/Header";
 import Link from "next/link";
 import Image from "next/image";
 import useCustom from "@/hooks/useCustom";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import CreateTemplateItem from "@/components/CreateTemplateItem";
 
 export default function Home() {
   const custom = useCustom()
+  const [nftsList, setNFTS] = useState([])
 
   useEffect(() => {
     getCollections().then(response => console.log(response))
   })
 
   const getCollections = async () => {
-    fetch(`/collection/${custom.getAccount()?.address}`, {
-      method: 'GET',
+    fetch(`/api/collection/${custom.getAccount()?.address}`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
+      body: JSON.stringify({
+        address: custom.getAccount()?.address
+      }),
     })
+      .then(response => response.json())
       .then(response => {
-        console.log(response)
+        const {result} = response.result
+        setNFTS(result)
       }) .catch(error => {
       // Handle any errors that occurred during the fetch request or data parsing
       console.error('Fetch error:', error);
@@ -45,12 +52,12 @@ export default function Home() {
                 <div className="text-white text-lg font-bold">이벤트 생성</div>
               </div>
             </Link>
-          {/*  {
-              wallet.NFTList.length > 0 &&
-              wallet.NFTList.map((nft, index) => {
+            {
+              nftsList && nftsList.length > 0 &&
+              nftsList.map((nft, index) => {
                 return <CreateTemplateItem key={index} nft={nft}/>
               }).reverse()
-            }*/}
+            }
           </div>
         </div>
         <div className="w-full lg:w-[1000px] p-10 my-[40px] bg-white rounded-[20px] flex-col justify-start items-start  mx-auto my-0 gap-5 inline-flex overflow-x-auto">

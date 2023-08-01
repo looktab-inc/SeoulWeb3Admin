@@ -1,9 +1,9 @@
-import {NextResponse} from 'next/server';
+import {NextRequest, NextResponse} from 'next/server';
 import SolanaHelper from "@/util/externals/blockchain/solanaHelper";
 
-export async function GET (request: Request) {
-  const { searchParams } = new URL(request.url)
-  const address = searchParams.get('address')
+export async function POST (req: NextRequest) {
+  const params = await req.json()
+  console.log(params)
   try {
     const solanaHelper = new SolanaHelper()
     const result = await solanaHelper.getCollections()
