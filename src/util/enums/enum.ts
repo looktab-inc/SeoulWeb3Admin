@@ -25,6 +25,20 @@ export const Tone = {
   FRIENDLY: 'friendly',
 }
 
+export const TREES = {
+  APPLE_TREE: 'appleTree',
+  PINE_TREE: 'pineTree',
+  OAK_TREE: 'oakTree',
+}
+
+export const FLOWERS = {
+  ROSE: 'rose',
+  SUNFLOWER: 'Sunflower',
+}
+
+export const GRAINS = {
+  WHEAT: 'wheat',
+}
 
 export const SEED = {
   TREE: 'tree',

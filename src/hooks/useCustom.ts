@@ -60,7 +60,7 @@ const useCustom = () => {
     })
     setCreateInfo('seed', selectedType.type)
     setChatList({
-      template: MessageTemplateType.GENERATE_NFT,
+      template: MessageTemplateType.NFT_DESCRIPTION,
       text: ''
     })
   }
@@ -115,10 +115,10 @@ const useCustom = () => {
       text: '이미지를 선택해주셨군요! 감사합니다 :)'
     })
     setChatList({
-      template: MessageTemplateType.SEED,
+      template: MessageTemplateType.GENERATE_NFT,
       text: ''
     })
-    setCurrentTemplate(MessageTemplateType.SEED)
+    setCurrentTemplate(MessageTemplateType.GENERATE_NFT)
   }
 
   const setNFTImageByFile = (imageURL) => {
@@ -128,10 +128,10 @@ const useCustom = () => {
       text: '이미지를 전달해주셨군요! 감사합니다 :)'
     })
     setChatList({
-      template: MessageTemplateType.SEED,
+      template: MessageTemplateType.GENERATE_NFT,
       text: ''
     })
-    setCurrentTemplate(MessageTemplateType.SEED)
+    setCurrentTemplate(MessageTemplateType.GENERATE_NFT)
   }
 
   const addChat = (newChat: ChatType) => {
@@ -156,9 +156,9 @@ const useCustom = () => {
             template: MessageTemplateType.DEFAULT_BY_ADMIN,
             text: result as string
           })
-          setCurrentTemplate(MessageTemplateType.NFT_IMAGE)
+          setCurrentTemplate(MessageTemplateType.SEED)
           setChatList({
-            template: MessageTemplateType.NFT_IMAGE,
+            template: MessageTemplateType.SEED,
           })
         })
         .catch(error => {

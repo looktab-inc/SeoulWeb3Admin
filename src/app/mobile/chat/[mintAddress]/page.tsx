@@ -1,7 +1,5 @@
 'use client'
 
-import ChatList from "@/components/ChatList";
-import InputMessage from "@/components/InputMessage";
 import {useEffect, useRef} from "react";
 import useCustom from "@/hooks/useCustom";
 import MobileChatList from "@/components/MobileChatList";
