@@ -14,11 +14,13 @@ export default function MintAddress({params} : {params: { mintAddress: string }}
       // @ts-ignore
       scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
     }
+  }, [chat.getChatList()])
 
+  useEffect(() => {
     return () => {
       chat.resetChatList()
     }
-  }, [chat.getChatList()])
+  }, [])
 
   return (
     <>
