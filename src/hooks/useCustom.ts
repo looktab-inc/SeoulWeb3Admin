@@ -112,6 +112,7 @@ const useCustom = () => {
     }).then(response => response.json())
       .then(response => {
         console.log(response)
+        setCreateInfo('step', CreateNFTStep.step3)
         setChatList({
           template: MessageTemplateType.END,
           text: ''
@@ -131,6 +132,7 @@ const useCustom = () => {
       template: MessageTemplateType.DEFAULT_BY_ADMIN,
       text: '이미지를 선택해주셨군요! 감사합니다 :)'
     })
+    setCreateInfo('step', CreateNFTStep.step2)
     setChatList({
       template: MessageTemplateType.GENERATE_NFT,
       text: ''
@@ -144,6 +146,7 @@ const useCustom = () => {
       template: MessageTemplateType.DEFAULT_BY_ADMIN,
       text: '이미지를 전달해주셨군요! 감사합니다 :)'
     })
+    setCreateInfo('step', CreateNFTStep.step2)
     setChatList({
       template: MessageTemplateType.GENERATE_NFT,
       text: ''
