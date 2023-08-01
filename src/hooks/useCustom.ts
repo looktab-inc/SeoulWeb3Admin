@@ -4,7 +4,6 @@ import {ChatType, SelectedType} from "@/util/types/types";
 import {CreateNFTStep, MessageTemplateType} from "@/util/enums/enum";
 import {SEEDS, TONES} from "@/util/statics/data";
 import AIHelper from "@/util/externals/ai/client";
-import SolanaHelper from "@/util/externals/blockchain/solanaHelper";
 import StorageByWeb3 from "@/util/externals/storage/web3";
 
 const useCustom = () => {
@@ -16,9 +15,6 @@ const useCustom = () => {
 
   // @ts-ignore
   const isPhantomInstalled = customLocalStorage?.phantom?.solana?.isPhantom
-
-  const solanaHelper = new SolanaHelper()
-  const storageByWeb3 = new StorageByWeb3()
 
   const getChatList = () => {
     return chatList
@@ -73,8 +69,9 @@ const useCustom = () => {
       { trait_type: 'store_address', value: account?.address },
       { trait_type: 'seed', value: createNFT.seed },
     ]
+    const storageByWeb3 = new StorageByWeb3()
     const imageURL = await storageByWeb3.getImage(createNFT.nftImage)
-    fetch('/collection', {
+    fetch('/api/collection', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -85,8 +82,10 @@ const useCustom = () => {
         imageUri: imageURL as string,
         attributes: newAttributes
       }),
-    })
-      .then(response => response.json())
+    }).then(response => response.json())
+      .then(response => {
+        console.log(response)
+      })
 
   }
 

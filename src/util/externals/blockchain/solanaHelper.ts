@@ -21,8 +21,6 @@ class SolanaHelper{
   private metaplex: Metaplex;
 
   constructor() {
-    console.log(process.env.SECRET_KEY)
-    console.log(process.env.PUBLIC_KEY)
     this.user = Keypair.fromSecretKey(
       bs58.decode(`${process.env.SECRET_KEY || process.env.NEXT_PUBLIC_SECRET_KEY}`),
     );
@@ -77,6 +75,12 @@ class SolanaHelper{
   async findNft (mintAddress) {
     const mintAddressPublicKey = new PublicKey(mintAddress)
     return await this.metaplex.nfts().findByMint({mintAddress: mintAddressPublicKey})
+  }
+
+  async getCollections() {
+    return  await this.metaplex.nfts().findAllByOwner({
+      owner: this.publickKey
+    });
   }
 
   async getOriginalUri(title: string, description: string,  imageUri: string, attributes: any) {

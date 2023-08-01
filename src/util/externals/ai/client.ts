@@ -1,7 +1,7 @@
 class AIHelper {
   async makeImage (description: string) {
     return new Promise((resolve, reject) => {
-      fetch('/ai/stability', {
+      fetch('/api/ai/stability', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ class AIHelper {
 
   makeText(keyword: string, tone: string) {
     return new Promise((resolve, reject) => {
-      fetch('/ai/gpt', {
+      fetch('/api/ai/gpt', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

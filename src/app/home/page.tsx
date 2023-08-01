@@ -3,8 +3,30 @@
 import Header from "@/components/Header";
 import Link from "next/link";
 import Image from "next/image";
+import useCustom from "@/hooks/useCustom";
+import {useEffect} from "react";
 
 export default function Home() {
+  const custom = useCustom()
+
+  useEffect(() => {
+    getCollections().then(response => console.log(response))
+  })
+
+  const getCollections = async () => {
+    fetch(`/collection/${custom.getAccount()?.address}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(response => {
+        console.log(response)
+      }) .catch(error => {
+      // Handle any errors that occurred during the fetch request or data parsing
+      console.error('Fetch error:', error);
+    });
+  }
   return (
     <main className="w-full py-[67px] lg:py-[106px] bg-zinc-100">
       <Header/>
