@@ -104,7 +104,10 @@ const NFTImage = () => {
     const fileName = `${custom.getAccount()?.address}-${Date.now()}`
     storageByWeb3.uploadFile(files, fileName)
       .then(result => {
-        custom.setNFTImageByFile(result)
+        console.log(result)
+        console.log(`https://${result}.ipfs.w3s.link/${encodeURIComponent(fileName)}`)
+        const url = `https://${result}.ipfs.w3s.link/${encodeURIComponent(fileName)}`
+        custom.setNFTImageByFile(url)
       }).catch(e => console.log(e))
   }
 
