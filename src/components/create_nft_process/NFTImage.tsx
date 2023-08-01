@@ -6,7 +6,8 @@ import AIHelper from "@/util/externals/ai/client";
 import ChatMessageByAdmin from "@/components/create_nft_process/ChatMessageByAdmin";
 import StorageByWeb3 from "@/util/externals/storage/web3";
 import useCustom from "@/hooks/useCustom";
-import {MessageTemplateType} from "@/util/enums/enum";
+import {MessageTemplateType, SEED} from "@/util/enums/enum";
+import {FLOWER_REFERENCES, FLOWERS, GRAIN_REFERENCES, GRAINS, TREE_REFERENCES} from "@/util/statics/data";
 
 const NFTImage = () => {
   const custom = useCustom()
@@ -15,13 +16,30 @@ const NFTImage = () => {
   const [dragging, setDragging] = useState(false);
   const dragRef = useRef<HTMLDivElement>(null);
 
+  function getRandomNumber(count) {
+    return Math.floor(Math.random() * count); // 0, 1, 2, 3 중 하나의 값 반환
+  }
+
   const handleClickMakeImage = async () => {
     custom.addChat({
       template: MessageTemplateType.DEFAULT_BY_ADMIN,
       text: 'AI가 이미지를 생성 중입니다.\n 시간이 조금 걸립니다. 잠시만 기다려 주세요!'
     })
     const aiHelper = new AIHelper()
-    aiHelper.makeImage(custom.getCrateInfo('nftDescription') as string)
+    const seed = custom.getCrateInfo('seed')
+    let seedText = ''
+    let referenceImage = ''
+    if (seed === SEED.TREE) {
+      seedText = FLOWERS[getRandomNumber(3)]
+      referenceImage = TREE_REFERENCES[0]
+    } else if(seed === SEED.FLOWER) {
+      seedText = FLOWERS[getRandomNumber(2)]
+      referenceImage = FLOWER_REFERENCES[0]
+    } else {
+      seedText = GRAINS[0]
+      referenceImage = GRAIN_REFERENCES[0]
+    }
+    aiHelper.makeImage(seedText, referenceImage)
       .then(result => {
         // @ts-ignore
         setImages(result)

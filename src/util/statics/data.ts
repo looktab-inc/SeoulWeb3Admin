@@ -59,3 +59,28 @@ export const GROWTH_STAGE = [
     ]
   },
 ]
+
+export const TREES = ['appleTree', 'pineTree', 'oakTree']
+export const FLOWERS = ['rose', 'Sunflower'];
+export const GRAINS = ['wheat'];
+
+export const TREE_REFERENCES = [
+  "https://seoul-web3-admin.vercel.app/images/references/tree_1.png",
+  "https://seoul-web3-admin.vercel.app/images/references/tree_2.png",
+  "https://seoul-web3-admin.vercel.app/images/references/tree_3.png",
+  "https://seoul-web3-admin.vercel.app/images/references/tree_4.png",
+  "https://seoul-web3-admin.vercel.app/images/references/tree_5.png",
+]
+
+export const FLOWER_REFERENCES = [
+  "https://seoul-web3-admin.vercel.app/images/references/tree_1.png",
+  "https://seoul-web3-admin.vercel.app/images/references/tree_2.png",
+  "https://seoul-web3-admin.vercel.app/images/references/tree_3.png",
+  "https://seoul-web3-admin.vercel.app/images/references/tree_4.png",
+  "https://seoul-web3-admin.vercel.app/images/references/tree_5.png",
+]
+
+export const GRAIN_REFERENCES = [
+  "https://seoul-web3-admin.vercel.app/images/references/grain_1.png",
+  "https://seoul-web3-admin.vercel.app/images/references/grain_2.png",
+]

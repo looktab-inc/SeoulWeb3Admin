@@ -1,5 +1,5 @@
 class AIHelper {
-  async makeImage (description: string) {
+  async makeImage (description: string, referenceURL: string) {
     return new Promise((resolve, reject) => {
       fetch('/api/ai/stability', {
         method: 'POST',
@@ -7,7 +7,8 @@ class AIHelper {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          description: description
+          description: description,
+          referenceURL: referenceURL
         }),
       })
         .then(response => response.json())

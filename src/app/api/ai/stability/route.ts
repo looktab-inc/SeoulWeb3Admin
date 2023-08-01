@@ -6,7 +6,7 @@ export async function POST(request: Request) {
   const apiKey = process.env.STABILITY_API_KEY
   const params = await request.json()
   try {
-    if (!apiKey) throw new Error('Missing Stability API key.')
+    if (!apiKey) throw 'Missing Stability API key.'
 
     const response = await fetch(
       `${apiHost}/v1/generation/${engineId}/text-to-image`,
@@ -20,9 +20,8 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           text_prompts: [
             {
-              text: `I need an image.
-Please make a representative image by referring to the example below.
-Example: ${params.description}`
+              text: `Please make an image of a seed by referring to the example below.
+              Example: ${params.description}`
             },
           ],
           cfg_scale: 7,
@@ -31,7 +30,8 @@ Example: ${params.description}`
           width: 512,
           samples: 1,
           steps: 30,
-          style_preset: 'comic-book'
+          style_preset: 'comic-book',
+          init_image: params.referenceURL
         }),
       }
     )
