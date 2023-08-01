@@ -21,13 +21,18 @@ const Header = () => {
     return `${address?.slice(0, 6)}...${address?.slice(address?.length - 4)}`
   }
 
+  const disconnect = () => {
+    wallet.disconnectWallet()
+    router.push('/')
+  }
+
   return (
     <div className="w-full lg:h-[106px] bg-white fixed top-0 left-0 right-0 z-30">
       <div className="w-full px-[20px] py-[12px] lg:px-[48px] lg:py-[32px] flex border border-zinc-200 justify-between items-center w-max-[1824px]">
         <Link className="w-[131px] h-[32px] relative" href={"/home"}>
           <Image src={'/images/logos/logo.webp'} alt={'nupy'} fill sizes={'100vw'}/>
         </Link>
-        <div className="justify-start items-end gap-3 flex align-middle items-center">
+        <div className="justify-start items-end gap-3 flex align-middle items-center" onClick={disconnect}>
           <div className="px-3 py-2.5 bg-zinc-100 rounded-[100px] justify-start items-start gap-2.5 flex">
             <div className="text-zinc-800 text-[14px] font-normal">{getDisplayAddress()}</div>
           </div>
