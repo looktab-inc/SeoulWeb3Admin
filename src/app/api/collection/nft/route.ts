@@ -1,8 +1,5 @@
 import {NextResponse} from 'next/server';
 import SolanaHelper from "@/util/externals/blockchain/solanaHelper";
-import {GenerationResponse} from "@/app/api/ai/stability/route";
-import {Web3Storage} from "web3.storage";
-import StorageByWeb3 from "@/util/externals/storage/web3";
 
 export async function POST(request: Request) {
   const {mintAddress, ownerAddress} = await request.json()
