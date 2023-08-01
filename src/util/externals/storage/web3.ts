@@ -49,8 +49,8 @@ class StorageByWeb3 {
       ]
       this.uploadFile(files,fileName)
         .then(result => {
-          console.log(result)
-          return result
+          console.log(`https://${result}.ipfs.w3s.link/${encodeURIComponent(fileName)}`)
+          return `https://${result}.ipfs.w3s.link/${encodeURIComponent(fileName)}`
         }).catch(e => {
           console.log(e)
           throw e

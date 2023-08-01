@@ -7,7 +7,7 @@ const LNB = () => {
   const LNBs = [
     {
       step: CreateNFTStep.step1,
-      text: "NFT 정보 입력 ",
+      text: "NFT 정보 입력",
     },
     {
       step: CreateNFTStep.step2,
