@@ -60,7 +60,7 @@ const useCustom = () => {
     })
     setCreateInfo('seed', selectedType.type)
     setChatList({
-      template: MessageTemplateType.NFT_DESCRIPTION,
+      template: MessageTemplateType.NFT_DESCRIPTION_TONE,
       text: ''
     })
   }
@@ -139,9 +139,9 @@ const useCustom = () => {
     if(currentTemplate === MessageTemplateType.NFT_TITLE) {
       setCreateInfo('nftTitle', newChat.text)
       setChatList({
-        template: MessageTemplateType.NFT_DESCRIPTION_TONE,
+        template: MessageTemplateType.SEED,
       })
-      setCurrentTemplate(MessageTemplateType.NFT_DESCRIPTION_TONE)
+      setCurrentTemplate(MessageTemplateType.SEED)
     } else if(currentTemplate === MessageTemplateType.NFT_DESCRIPTION) {
       setChatList({
         template: MessageTemplateType.DEFAULT_BY_ADMIN,
@@ -156,9 +156,9 @@ const useCustom = () => {
             template: MessageTemplateType.DEFAULT_BY_ADMIN,
             text: result as string
           })
-          setCurrentTemplate(MessageTemplateType.SEED)
+          setCurrentTemplate(MessageTemplateType.NFT_IMAGE)
           setChatList({
-            template: MessageTemplateType.SEED,
+            template: MessageTemplateType.NFT_IMAGE,
           })
         })
         .catch(error => {
