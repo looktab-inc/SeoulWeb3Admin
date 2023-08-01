@@ -238,6 +238,7 @@ const useCustom = () => {
 
   const resetChatList = () => {
     setChatList(null)
+    setCurrentTemplate(null)
   }
 
   return {

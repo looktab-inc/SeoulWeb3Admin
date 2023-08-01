@@ -29,6 +29,7 @@ const useMoblieChat = () => {
 
   const resetChatList = () => {
     setChatList(null)
+    setCurrentTemplate(null)
   }
 
   return {
